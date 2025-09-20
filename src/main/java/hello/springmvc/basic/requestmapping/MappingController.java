@@ -1,5 +1,6 @@
 package hello.springmvc.basic.requestmapping;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -59,8 +60,9 @@ public class MappingController {
      * headers="mode!=debug" (! = )
      */
     @GetMapping(value = "/mapping-header", headers = "mode=debug") // header에 mode=debug가 있어야 메소드가 실행됨
-    public String mappingHeader() {
+    public String mappingHeader(@RequestHeader("mode") String mode) { // header에 있는 mode의 값을 꺼내봄.
         log.info("mappingHeader");
+        log.info(mode);
         return "ok";
     }
 
